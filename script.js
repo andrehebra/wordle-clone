@@ -45,6 +45,8 @@ function play(letter) {
                     return;
                 }
             }
+            
+            return;
 
         } else {
             console.log('didnotwork...');
