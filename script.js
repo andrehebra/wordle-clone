@@ -7,6 +7,9 @@ let correctWord = '';
 let wordPosition = 0;
 //current word trying to submit
 let submission = '';
+//lists of correct guesses for keyboard
+let perfectMatch = [];
+let rightLetter = [];
 
 
 //event listener to catch each keystroke
@@ -93,12 +96,27 @@ function getCurrentWord(startingRow) {
                 const currentElement = document.getElementById('row-' + startingRow + '-letter-' + (j+1));
                 if (correctWord[j] == submission[j]) {
                     currentElement.classList.add('correct-spot');
+                    perfectMatch = perfectMatch.concat(submission[j]);
+                    //console.log(perfectMatch);
                 } else if (correctWord.includes(submission[j])) {
                     currentElement.classList.add('in-word');
+                    rightLetter = rightLetter.concat(submission[j]);
+                    //console.log(rightLetter);
                 } else {
                     currentElement.classList.add('not-in-word');
                 }
             }
+
+            //update keyboard
+            perfectMatch.forEach( function (e) {
+                const letter = document.getElementById(e)
+                letter.classList.add('green-key');
+            });
+
+            rightLetter.forEach( function (e) {
+                const letter = document.getElementById(e)
+                letter.classList.add('yellow-key');
+            });
 
             return submission;
         } else {
@@ -164,6 +182,9 @@ function newGame() {
 
     //create keyboard for game
     createKeyboard();
+    //reset keyboard lists of matches
+    perfectMatch = [];
+    rightLetter = [];
 
 
     //finds the main grid in index.html
@@ -203,11 +224,6 @@ function newGame() {
 }
 
 newGame();
-
-
-
-
-
 
 
 function createKeyboard() {

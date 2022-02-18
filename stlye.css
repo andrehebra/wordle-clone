@@ -51,7 +51,7 @@ h1 {
     background-color: #b59f3b;
 }
 
-.correct-spot {
+.correct-spot{
     background-color: #538d4e;
 }
 
@@ -78,3 +78,12 @@ h1 {
     background-color: black;
     color: white;
 }
+
+.yellow-key {
+    background-color: #b59f3b;
+}
+
+.green-key {
+    background-color: #538d4e;
+}
+
