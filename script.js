@@ -39,16 +39,18 @@ for (i = 1; i <= numberOfAttempts; i++) {
 window.addEventListener('keydown', function (e) {
 
     //change keys to uppercase
-    console.log(e.key.toUpperCase());
+    const upperCase = e.key.toUpperCase();
 
     //check to see if keys pressed are from alphabet
 
     //add keystroke
-    play(e.key.toUpperCase())
-
-    //check if backspace
-
-    //delete previous guess
+    if (upperCase.match("^[a-zA-Z\(\)]+$") && upperCase.length == 1) {
+        play(upperCase);
+    } else if (upperCase == 'BACKSPACE') {
+        backSpace();
+    } else if (upperCase == 'ENTER') {
+        submitWord();
+    }
 });
 
 //add keystroke
