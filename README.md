@@ -1,0 +1,1 @@
+A simple wordle clone made using javascript. Created using the official list of acceptable words. Each game it will pick a random word from the list to be used. Can play unlimited games.
