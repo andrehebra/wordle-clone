@@ -8,4 +8,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background-color: black;
+    color: white;
+}
+
+.row {
+    display: flex;
+}
+
+.letter-box {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid white;
+
+    margin: 3px;
 }
