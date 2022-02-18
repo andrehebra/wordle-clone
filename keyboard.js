@@ -24,6 +24,7 @@ const middleRow = [
 ];
 
 const bottomRow = [
+    'SHIFT',
     'Z',
     'X',
     'C',
@@ -31,4 +32,5 @@ const bottomRow = [
     'B',
     'N',
     'M',
+    'DELETE',
 ];

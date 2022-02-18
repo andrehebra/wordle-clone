@@ -8,11 +8,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 
     background-color: black;
     color: white;
 
     font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    margin: 0px;
 }
 
 .row {
@@ -54,3 +59,16 @@ body {
     background-color: #3a3a3b;
 }
 
+
+
+.key-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.key {
+    display: flex;
+    padding: 10px;
+    margin: 3px;
+}

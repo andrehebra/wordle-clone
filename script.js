@@ -152,6 +152,9 @@ function newGame() {
     correctWord = correctWord.toUpperCase();
     console.log(correctWord);
 
+    //create keyboard for game
+    createKeyboard();
+
 
     //finds the main grid in index.html
     const mainGrid = document.getElementById('main-grid');
@@ -190,3 +193,49 @@ function newGame() {
 }
 
 newGame();
+
+
+
+
+
+
+
+function createKeyboard() {
+    const keyboard = document.getElementById('keyboard');
+
+    const topKeys = document.createElement('div');
+    topKeys.className = 'key-row';
+    for (i = 0; i < 10; i++) {
+        const key = document.createElement('button');
+        key.id = topRow[i];
+        key.className = 'key';
+        key.textContent = topRow[i];
+        topKeys.appendChild(key);
+    }
+
+    keyboard.appendChild(topKeys);
+
+    const middleKeys = document.createElement('div');
+    middleKeys.className = 'key-row';
+    for (i = 0; i < 9; i++) {
+        const key = document.createElement('button');
+        key.id = middleRow[i];
+        key.className = 'key';
+        key.textContent = middleRow[i];
+        middleKeys.appendChild(key);
+    }
+
+    keyboard.appendChild(middleKeys);
+
+    const bottomKeys = document.createElement('div');
+    bottomKeys.className = 'key-row';
+    for (i = 0; i < 9; i++) {
+        const key = document.createElement('button');
+        key.id = bottomRow[i];
+        key.className = 'key';
+        key.textContent = bottomRow[i];
+        bottomKeys.appendChild(key);
+    }
+
+    keyboard.appendChild(bottomKeys);
+}
