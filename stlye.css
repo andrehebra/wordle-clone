@@ -79,6 +79,10 @@ h1 {
     color: white;
 }
 
+.grey-key {
+    background-color: #3a3a3b;
+}
+
 .yellow-key {
     background-color: #b59f3b;
 }
