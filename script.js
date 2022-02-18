@@ -2,38 +2,12 @@
 const numberOfAttempts = 6;
 //length of the words that can be guessed
 const wordLength = 5;
+//variable for the word that needs to be guessed
+let correctWord = '';
+let wordPosition = 0;
+//current word trying to submit
+let submission = '';
 
-//finds the main grid in index.html
-const mainGrid = document.getElementById('main-grid');
-
-//adding a grid of elements to mainGrid
-for (i = 1; i <= numberOfAttempts; i++) {
-
-    //creating row and adding attributes to it
-    let row = document.createElement('div');
-    row.className = 'row';
-    row.id = 'row-' + i;
-    row.setAttribute('played', 'false');
-
-    //adding the individual letters to each row
-    for (j = 1; j <= wordLength; j++) {
-
-        //creating letters and adding attributes
-        let letterBox = document.createElement('div');
-        letterBox.className = 'letter-box';
-        letterBox.id = 'row-' + i + '-letter-' + j;
-        letterBox.setAttribute('played', 'false');
-
-        //set default dext to nothing
-        letterBox.textContent = '';
-
-        //add the letterbox to each row
-        row.appendChild(letterBox);
-    }
-    
-    //adding each row onto the main-grid
-    mainGrid.appendChild(row);
-}
 
 //event listener to catch each keystroke
 window.addEventListener('keydown', function (e) {
@@ -45,7 +19,7 @@ window.addEventListener('keydown', function (e) {
 
     //add keystroke
     if (upperCase.match("^[a-zA-Z\(\)]+$") && upperCase.length == 1) {
-        play(upperCase);
+        addLetter(upperCase);
     } else if (upperCase == 'BACKSPACE') {
         backSpace();
     } else if (upperCase == 'ENTER') {
@@ -54,7 +28,7 @@ window.addEventListener('keydown', function (e) {
 });
 
 //add keystroke
-function play(letter) {
+function addLetter(letter) {
     //check if current row has been played
     for (i = 1; i <= numberOfAttempts; i++) {
         if (document.getElementById('row-' + i).getAttribute('played') == 'false') {
@@ -66,6 +40,7 @@ function play(letter) {
                 if (currentLetter.getAttribute('played') == 'false') {
                     currentLetter.innerText = letter;
                     currentLetter.setAttribute('played', 'true');
+                    currentLetter.setAttribute('letter', letter);
                     return;
                 }
             }
@@ -77,3 +52,102 @@ function play(letter) {
         }
     }
 }
+
+//get the word that is typed in, starting at the row specified
+function getCurrentWord(startingRow) {
+
+    submission = '';
+
+    if (startingRow > numberOfAttempts) {
+        return;
+    }
+
+    if (document.getElementById('row-' + startingRow).getAttribute('played') == 'false') {
+        for (j = 1; j <= wordLength; j++) {
+            const currentLetter = document.getElementById('row-' + startingRow + '-letter-' + j);
+            //check if the letter is empty, if empty spaces, simply return
+            if (currentLetter.getAttribute('played') == 'false') {
+                return;
+            }
+
+            //add letters into submission to create complete word
+            submission = submission + currentLetter.getAttribute('letter');
+            
+        }
+        //make sure it is in the word list
+        if (wordList.includes(submission)) {
+            document.getElementById('row-' + startingRow).setAttribute('played', 'true');
+            console.log('does contain');
+        } else {
+            console.log('doesnt contain');
+        }
+        
+
+    } else {
+        getCurrentWord(startingRow + 1);
+    }
+
+    return submission;
+}
+
+//submit word that is in the last row
+function submitWord() {
+
+    //get word from row
+    const wordToCheck = getCurrentWord(1);
+    
+
+    
+
+    //check each letter
+}
+
+function backSpace() {
+
+}
+
+function newGame() {
+    //pick the word that needs to be guessed
+    wordPosition = Math.floor(Math.random() * wordList.length);
+    correctWord = wordList[wordPosition];
+    correctWord = correctWord.toUpperCase();
+    console.log(correctWord);
+
+
+    //finds the main grid in index.html
+    const mainGrid = document.getElementById('main-grid');
+
+    mainGrid.innerHTML = '';
+
+    //adding a grid of elements to mainGrid
+    for (i = 1; i <= numberOfAttempts; i++) {
+
+        //creating row and adding attributes to it
+        let row = document.createElement('div');
+        row.className = 'row';
+        row.id = 'row-' + i;
+        row.setAttribute('played', 'false');
+
+        //adding the individual letters to each row
+        for (j = 1; j <= wordLength; j++) {
+
+            //creating letters and adding attributes
+            let letterBox = document.createElement('div');
+            letterBox.className = 'letter-box';
+            letterBox.id = 'row-' + i + '-letter-' + j;
+            letterBox.setAttribute('played', 'false');
+
+            //set default dext to nothing
+            letterBox.textContent = '';
+
+            //add the letterbox to each row
+            row.appendChild(letterBox);
+        }
+        
+        //adding each row onto the main-grid
+        mainGrid.appendChild(row);
+    }
+
+}
+
+newGame();
