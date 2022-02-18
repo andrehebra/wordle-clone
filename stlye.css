@@ -69,6 +69,12 @@ h1 {
 
 .key {
     display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
+    min-height: 50px;
     margin: 3px;
+
+    background-color: black;
+    color: white;
 }

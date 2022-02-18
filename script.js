@@ -13,22 +13,32 @@ let submission = '';
 window.addEventListener('keydown', function (e) {
 
     //change keys to uppercase
-    const upperCase = e.key.toUpperCase();
+    addLetter(e.key.toUpperCase());
+    console.log(e.key.toUpperCase())
 
     //check to see if keys pressed are from alphabet
 
     //add keystroke
-    if (upperCase.match("^[a-zA-Z\(\)]+$") && upperCase.length == 1) {
-        addLetter(upperCase);
-    } else if (upperCase == 'BACKSPACE') {
-        backSpace();
-    } else if (upperCase == 'ENTER') {
-        submitWord();
-    }
+    
 });
 
 //add keystroke
 function addLetter(letter) {
+
+    //const upperCase = letter.toUpperCase();
+
+    if (letter.match("^[a-zA-Z\(\)]+$") && letter.length == 1) {
+        //addLetter(letter);
+    } else if (letter == 'BACKSPACE' || letter == 'DELETE') {
+        backSpace();
+        return;
+    } else if (letter == 'ENTER') {
+        submitWord();
+        return;
+    } else {
+        return;
+    }
+
     //check if current row has been played
     for (i = 1; i <= numberOfAttempts; i++) {
         if (document.getElementById('row-' + i).getAttribute('played') == 'false') {
@@ -210,6 +220,11 @@ function createKeyboard() {
         key.id = topRow[i];
         key.className = 'key';
         key.textContent = topRow[i];
+
+        key.addEventListener('click', function (e) {
+            addLetter(e.target.id);
+        });
+
         topKeys.appendChild(key);
     }
 
@@ -222,6 +237,11 @@ function createKeyboard() {
         key.id = middleRow[i];
         key.className = 'key';
         key.textContent = middleRow[i];
+
+        key.addEventListener('click', function (e) {
+            addLetter(e.target.id);
+        });
+
         middleKeys.appendChild(key);
     }
 
@@ -234,6 +254,11 @@ function createKeyboard() {
         key.id = bottomRow[i];
         key.className = 'key';
         key.textContent = bottomRow[i];
+
+        key.addEventListener('click', function (e) {
+            addLetter(e.target.id);
+        });
+
         bottomKeys.appendChild(key);
     }
 
