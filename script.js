@@ -59,7 +59,7 @@ function getCurrentWord(startingRow) {
     submission = '';
 
     if (startingRow > numberOfAttempts) {
-        return;
+        return 'IGNORE';
     }
 
     if (document.getElementById('row-' + startingRow).getAttribute('played') == 'false') {
@@ -67,7 +67,7 @@ function getCurrentWord(startingRow) {
             const currentLetter = document.getElementById('row-' + startingRow + '-letter-' + j);
             //check if the letter is empty, if empty spaces, simply return
             if (currentLetter.getAttribute('played') == 'false') {
-                return;
+                return 'IGNORE';
             }
 
             //add letters into submission to create complete word
@@ -77,8 +77,20 @@ function getCurrentWord(startingRow) {
         //make sure it is in the word list
         if (wordList.includes(submission)) {
             document.getElementById('row-' + startingRow).setAttribute('played', 'true');
-            console.log('does contain');
+
+            
+            for (j = 0; j < wordLength; j++) {
+                const currentElement = document.getElementById('row-' + startingRow + '-letter-' + (j+1));
+                if (correctWord[j] == submission[j]) {
+                    currentElement.classList.add('correct-spot');
+                } else if (correctWord.includes(submission[j])) {
+                    currentElement.classList.add('in-word');
+                }
+            }
+
+            return submission;
         } else {
+            console.log(submission);
             console.log('doesnt contain');
         }
         
@@ -87,7 +99,7 @@ function getCurrentWord(startingRow) {
         getCurrentWord(startingRow + 1);
     }
 
-    return submission;
+    return 'IGNORE';
 }
 
 //submit word that is in the last row
@@ -95,11 +107,24 @@ function submitWord() {
 
     //get word from row
     const wordToCheck = getCurrentWord(1);
-    
+    if (wordToCheck == 'IGNORE') {
+        return;
+    }
 
-    
+    if (wordToCheck == correctWord) {
+        winGame();
+    } else {
+        checkLetters();
+    }
 
-    //check each letter
+}
+
+function checkLetters() {
+
+}
+
+function winGame() {
+
 }
 
 function backSpace() {
