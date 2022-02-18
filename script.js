@@ -128,7 +128,19 @@ function winGame() {
 }
 
 function backSpace() {
+    for (i = 1; i <= numberOfAttempts; i++) {
 
+        const currentRow = document.getElementById('row-' + i);
+
+        for (j = wordLength; j >= 1; j--) {
+            const currentElement = document.getElementById('row-' + i + '-letter-' + j);
+            if (currentElement.getAttribute('played') == 'true' && currentRow.getAttribute('played') == 'false') {
+                currentElement.textContent = '';
+                currentElement.setAttribute('played', 'false');
+                return;
+            }
+        }
+    }
 }
 
 function newGame() {
