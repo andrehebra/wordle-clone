@@ -29,3 +29,11 @@ body {
 
     margin: 3px;
 }
+
+.in-word {
+    background-color: yellow;
+}
+
+.correct-spot {
+    background-color: green;
+}
