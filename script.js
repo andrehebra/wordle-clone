@@ -85,6 +85,8 @@ function getCurrentWord(startingRow) {
                     currentElement.classList.add('correct-spot');
                 } else if (correctWord.includes(submission[j])) {
                     currentElement.classList.add('in-word');
+                } else {
+                    currentElement.classList.add('not-in-word');
                 }
             }
 
