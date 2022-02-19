@@ -125,6 +125,13 @@ function getCurrentWord(startingRow) {
                 letter.classList.add('grey-key');
             });
 
+
+            if (submission == correctWord) {
+                winGame();
+            } else if (startingRow == numberOfAttempts) {
+                loseGame();
+            }
+
             return submission;
         } else {
             console.log(submission);
@@ -163,6 +170,14 @@ function winGame() {
         newGame();
     });
 
+}
+
+function loseGame() {
+    const startAgain = document.getElementById('ENTER');
+    startAgain.textContent = 'The word was ' + correctWord + ', START NEW GAME';
+    startAgain.addEventListener('click', function (e) {
+        newGame();
+    });
 }
 
 function backSpace() {
