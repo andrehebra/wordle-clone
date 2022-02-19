@@ -122,7 +122,7 @@ function getCurrentWord(startingRow) {
 
             noMatch.forEach( function (e) {
                 const letter = document.getElementById(e)
-                letter.classList.add('grey-key');
+                letter.classList.add('greyirb-key');
             });
 
             return submission;
@@ -273,7 +273,7 @@ function createKeyboard() {
 
     const bottomKeys = document.createElement('div');
     bottomKeys.className = 'key-row';
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < 8; i++) {
         const key = document.createElement('button');
         key.id = bottomRow[i];
         key.className = 'key';
@@ -287,4 +287,16 @@ function createKeyboard() {
     }
 
     keyboard.appendChild(bottomKeys);
+
+    const enterButton = document.createElement('button');
+    enterButton.id = 'ENTER';
+    enterButton.className = 'key';
+    enterButton.classList.add('key-row');
+    enterButton.textContent = 'ENTER';
+
+    enterButton.addEventListener('click', function (e) {
+        addLetter(e.target.id);
+    });
+
+    keyboard.appendChild(enterButton);
 }

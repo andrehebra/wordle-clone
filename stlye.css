@@ -60,6 +60,10 @@ h1 {
 }
 
 
+#keyboard {
+    display: flex;
+    flex-direction: column;
+}
 
 .key-row {
     display: flex;
@@ -76,7 +80,7 @@ h1 {
     min-width: 30px;
     margin: 3px;
 
-    background-color: black;
+    background-color: #5e666a;
     color: white;
 }
 
