@@ -133,12 +133,11 @@ function getCurrentWord(startingRow) {
         
 
     } else {
-        getCurrentWord(startingRow + 1);
+        return getCurrentWord(startingRow + 1);
     }
 
-    return 'IGNORE';
+    //return 'IGNORE';
 }
-
 //submit word that is in the last row
 function submitWord() {
 
@@ -147,6 +146,9 @@ function submitWord() {
     if (wordToCheck == 'IGNORE') {
         return;
     }
+
+    console.log(wordToCheck);
+    console.log(correctWord);
 
     if (wordToCheck == correctWord) {
         winGame();
