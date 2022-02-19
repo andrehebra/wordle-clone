@@ -150,17 +150,16 @@ function submitWord() {
 
     if (wordToCheck == correctWord) {
         winGame();
-    } else {
-        checkLetters();
-    }
-
-}
-
-function checkLetters() {
+    } 
 
 }
 
 function winGame() {
+    const startAgain = document.getElementById('ENTER');
+    startAgain.textContent = 'START NEW GAME';
+    startAgain.addEventListener('click', function (e) {
+        newGame();
+    });
 
 }
 
@@ -181,6 +180,10 @@ function backSpace() {
 }
 
 function newGame() {
+    
+    const keyboard = document.getElementById('keyboard');
+    keyboard.innerHTML = '';
+    
     //pick the word that needs to be guessed
     wordPosition = Math.floor(Math.random() * wordList.length);
     correctWord = wordList[wordPosition];
@@ -199,6 +202,8 @@ function newGame() {
     const mainGrid = document.getElementById('main-grid');
 
     mainGrid.innerHTML = '';
+
+    
 
     //adding a grid of elements to mainGrid
     for (i = 1; i <= numberOfAttempts; i++) {
