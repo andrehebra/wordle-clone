@@ -122,7 +122,7 @@ function getCurrentWord(startingRow) {
 
             noMatch.forEach( function (e) {
                 const letter = document.getElementById(e)
-                letter.classList.add('greyirb-key');
+                letter.classList.add('grey-key');
             });
 
             return submission;
