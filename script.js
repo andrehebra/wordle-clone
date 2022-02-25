@@ -20,7 +20,6 @@ window.addEventListener('keydown', function (e) {
 
     //change keys to uppercase
     addLetter(e.key.toUpperCase());
-    console.log(e.key.toUpperCase())
 
     //check to see if keys pressed are from alphabet
 
@@ -66,7 +65,7 @@ function addLetter(letter) {
                 return;
 
             } else {
-                //console.log('didnotwork...');
+                
             }
         }
 
@@ -104,11 +103,11 @@ function getCurrentWord(startingRow) {
                 if (correctWord[j] == submission[j]) {
                     currentElement.classList.add('correct-spot');
                     perfectMatch = perfectMatch.concat(submission[j]);
-                    //console.log(perfectMatch);
+                    
                 } else if (correctWord.includes(submission[j])) {
                     currentElement.classList.add('in-word');
                     rightLetter = rightLetter.concat(submission[j]);
-                    //console.log(rightLetter);
+                    
                 } else {
                     currentElement.classList.add('not-in-word');
                     noMatch = noMatch.concat(submission[j]);
@@ -140,8 +139,7 @@ function getCurrentWord(startingRow) {
 
             return submission;
         } else {
-            console.log(submission);
-            console.log('doesnt contain');
+            
         }
         
 
@@ -160,8 +158,7 @@ function submitWord() {
         return;
     }
 
-    console.log(wordToCheck);
-    console.log(correctWord);
+    
 
     if (wordToCheck == correctWord) {
         winGame();
@@ -215,7 +212,8 @@ function newGame() {
     wordPosition = Math.floor(Math.random() * wordList.length);
     correctWord = wordList[wordPosition];
     correctWord = correctWord.toUpperCase();
-    console.log(correctWord);
+    console.log("Hello cheater... here is the correct answer: " + correctWord);
+    console.log("I mean why even play if you just cheat... ");
 
     //create keyboard for game
     createKeyboard();
