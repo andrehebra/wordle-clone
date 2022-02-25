@@ -212,6 +212,8 @@ function newGame() {
     wordPosition = Math.floor(Math.random() * wordList.length);
     correctWord = wordList[wordPosition];
     correctWord = correctWord.toUpperCase();
+
+    //easter egg
     console.log("Hello cheater... here is the correct answer: " + correctWord);
     console.log("I mean why even play if you just cheat... ");
 
