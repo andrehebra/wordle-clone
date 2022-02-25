@@ -11,6 +11,8 @@ let submission = '';
 let perfectMatch = [];
 let rightLetter = [];
 let noMatch = [];
+//check if game is over
+let gameOver = false;
 
 
 //event listener to catch each keystroke
@@ -29,41 +31,45 @@ window.addEventListener('keydown', function (e) {
 //add keystroke
 function addLetter(letter) {
 
-    //const upperCase = letter.toUpperCase();
+    if (!gameOver) {
 
-    if (letter.match("^[a-zA-Z\(\)]+$") && letter.length == 1) {
-        //addLetter(letter);
-    } else if (letter == 'BACKSPACE' || letter == 'DELETE') {
-        backSpace();
-        return;
-    } else if (letter == 'ENTER') {
-        submitWord();
-        return;
-    } else {
-        return;
-    }
+        //const upperCase = letter.toUpperCase();
 
-    //check if current row has been played
-    for (i = 1; i <= numberOfAttempts; i++) {
-        if (document.getElementById('row-' + i).getAttribute('played') == 'false') {
-            
-            //check if letters have already been put in row
-            for (j = 1; j <= wordLength; j++) {
-                const currentLetter = document.getElementById('row-' + i + '-letter-' + j);
-                //if letter box has not been played yet, add letter there
-                if (currentLetter.getAttribute('played') == 'false') {
-                    currentLetter.innerText = letter;
-                    currentLetter.setAttribute('played', 'true');
-                    currentLetter.setAttribute('letter', letter);
-                    return;
-                }
-            }
-            //return once the letter has been added
+        if (letter.match("^[a-zA-Z\(\)]+$") && letter.length == 1) {
+            //addLetter(letter);
+        } else if (letter == 'BACKSPACE' || letter == 'DELETE') {
+            backSpace();
             return;
-
+        } else if (letter == 'ENTER') {
+            submitWord();
+            return;
         } else {
-            //console.log('didnotwork...');
+            return;
         }
+
+        //check if current row has been played
+        for (i = 1; i <= numberOfAttempts; i++) {
+            if (document.getElementById('row-' + i).getAttribute('played') == 'false') {
+                
+                //check if letters have already been put in row
+                for (j = 1; j <= wordLength; j++) {
+                    const currentLetter = document.getElementById('row-' + i + '-letter-' + j);
+                    //if letter box has not been played yet, add letter there
+                    if (currentLetter.getAttribute('played') == 'false') {
+                        currentLetter.innerText = letter;
+                        currentLetter.setAttribute('played', 'true');
+                        currentLetter.setAttribute('letter', letter);
+                        return;
+                    }
+                }
+                //return once the letter has been added
+                return;
+
+            } else {
+                //console.log('didnotwork...');
+            }
+        }
+
     }
 }
 
@@ -164,8 +170,9 @@ function submitWord() {
 }
 
 function winGame() {
+    gameOver = true;
     const startAgain = document.getElementById('ENTER');
-    startAgain.textContent = 'START NEW GAME';
+    startAgain.textContent = 'YOU WON! START NEW GAME?';
     startAgain.addEventListener('click', function (e) {
         newGame();
     });
@@ -197,6 +204,8 @@ function backSpace() {
 }
 
 function newGame() {
+
+    gameOver = false;
     
     const keyboard = document.getElementById('keyboard');
     keyboard.innerHTML = '';
