@@ -173,6 +173,7 @@ function winGame() {
     gameOver = true;
     const startAgain = document.getElementById('ENTER');
     startAgain.textContent = 'YOU WON! START NEW GAME?';
+    startAgain.classList.add('green-key');
     startAgain.addEventListener('click', function (e) {
         newGame();
     });
