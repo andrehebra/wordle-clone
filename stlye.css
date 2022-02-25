@@ -51,10 +51,12 @@ h1 {
 
 .in-word {
     background-color: #b59f3b;
+    border: 1px solid transparent;
 }
 
 .correct-spot{
     background-color: #538d4e;
+    border: 1px solid transparent;
 }
 
 
@@ -101,4 +103,5 @@ h1 {
 
 .not-in-word {
     background-color: #3a3a3b;
+    border: 1px solid transparent;
 }
