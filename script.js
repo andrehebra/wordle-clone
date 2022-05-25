@@ -214,7 +214,7 @@ function newGame() {
     correctWord = correctWord.toUpperCase();
 
     //easter egg
-    console.log("Hello cheater... here is the correct answer: " + correctWord);
+    console.log("Hello Kellon... here is the correct answer: " + correctWord);
     console.log("I mean why even play if you just cheat... ");
 
     //create keyboard for game
